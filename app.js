@@ -94,8 +94,10 @@ function getChannel(channel) {
                 <li class="collection-item">Videos: ${toLocalString(channel.statistics.videoCount)}</li>
             </ul>
             <p>${channel.snippet.description}</p>
-            <hr>
-            <a class="btn grey darken-2" target="_blank" href="https://youtube.com/${channel.snippet.customUrl}">Visit Channel</a>
+            <div class="divider"></div>
+            <div class="center-align">
+                <a class="btn visitChannel-btn inline-block grey darken-2" target="_blank" href="https://youtube.com/${channel.snippet.customUrl}">Visit Channel</a>
+            </div>    
         `;
         showChannelData(output);
         const playlistId = channel.contentDetails.relatedPlaylists.uploads;
@@ -115,13 +117,29 @@ function requestVideoPlaylist(playlistId) {
         console.log(response);
         const playlistItems = response.result.items;
         if(playlistItems){
-            let output = '<h4 class="align-center">Latest videos</h4>'
+            let output = '<h4 class="center-align">Latest videos</h4>'
             // loop through videos and append output
             playlistItems.forEach(item => {
                 const videoId = item.snippet.resourceId.videoId;
+                const videoTitle = item.snippet.title;
+                const videoDesc = item.snippet.description;
+                const videoPublished = new Date(item.snippet.publishedAt).toLocaleString('pl-PL');
+                console.log(typeof videoPublishedAtDate);
                 output += `
-                <div class="col s3">
-                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <div class="col s12 m6 offset-m3 l4">
+                    <div class="card">
+                        <div class="card-image">
+                            <iframe width="100%" height="auto" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <div class="badge blue lighten-4 right-align">Published ${videoPublished} </div>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">${videoTitle}<i class="material-icons right">more_vert</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">${videoTitle}<i class="material-icons right">close</i></span>
+                            <p>${videoDesc}</p>
+                        </div>
+                    </div>
                 </div>
                 `;
             });
