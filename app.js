@@ -1,7 +1,12 @@
 // options
-const CLIENT_ID = '960910439848-1eab1mcd0kiru60i577u0g43hj5r350l.apps.googleusercontent.com';
-const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'];
-const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
+const CLIENT_ID = '180268192986-p34bc21428sjnql1vef6gi8ca5a3qesr.apps.googleusercontent.com';
+
+// Array of API discovery doc URLs for APIs used by the quickstart
+var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
+// Authorization scopes required by the API. If using multiple scopes,
+// separated them with spaces.
+var SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
+
 const authorizeButton = document.querySelector('#login-button');
 const signoutButton = document.querySelector('#logout-button');
 const content = document.querySelector('#content');
@@ -9,6 +14,9 @@ const channelForm = document.querySelector('#channel-form');
 const channelInput = document.querySelector('#channel-input');
 const channelData = document.querySelector('#channel-data');
 const videoContainer = document.querySelector('#video-container');
+
+// Q-gRi8VVEgS-OFU0Muc-h3Kg
+
 
 // form subbmit and change chanel variable
 channelForm.addEventListener('submit', e =>{
