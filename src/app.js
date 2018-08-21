@@ -83,9 +83,33 @@ function requestVideoPlaylist(playlistId) {
         console.log(response);
         const playlistItems = response.result.items;
         if(playlistItems){
-            ui.displayLatestVideos(playlistItems);
+            ui.displayVideos(playlistItems, 'channel');
         } else {
           ui.videoContainer.innerHTML = 'No uploaded videos'  
         }
     });
+}
+
+ui.videoForm.addEventListener('submit', (e) => {
+    const query = ui.videoInput.value;
+    getVideoResults(query);
+    e.preventDefault();
+})
+
+function getVideoResults(query){
+    gapi.client.youtube.search.list({
+        part: 'snippet',
+        type: 'video',
+        q: query
+    })
+    .then(response => {
+        console.log(response);
+        const videos = response.result.items;
+        if(videos){
+            ui.displayVideos(videos, 'searchList');
+        } else {
+          ui.videoContainer.innerHTML = 'No videos found'  
+        }
+    })
+    .catch(err => console.warn(err));
 }

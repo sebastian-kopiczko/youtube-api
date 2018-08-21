@@ -3,10 +3,12 @@ class UserInterface{
     this.authorizeButton = document.querySelector('#login-button'),
     this.signoutButton = document.querySelector('#logout-button'),
     this.content = document.querySelector('#content'),
-    this.channelForm = document.querySelector('#channel-form'),
-    this.channelInput = document.querySelector('#channel-input'),
+    this.channelForm = document.querySelector('#searchChannel-form'),
+    this.channelInput = document.querySelector('#searchChannel-input'),
     this.channelData = document.querySelector('#channel-data'),
-    this.videoContainer = document.querySelector('#video-container')
+    this.videoContainer = document.querySelector('#video-container'),
+    this.videoForm = document.querySelector('#searchVideo-form'),
+    this.videoInput = document.querySelector('#searchVideo-input')
   }
   
   displayChannelData(channel){
@@ -27,10 +29,11 @@ class UserInterface{
     this.channelData.innerHTML = output;
   }
 
-  displayLatestVideos(items){
-    let output = '<h4 class="center-align">Latest videos</h4>'
-    // loop through videos and append output
-    items.forEach(item => {
+  displayVideos(items, type){
+    let output;
+    if(type === 'channel'){
+      output = '<h4 class="center-align">Latest videos</h4>'
+      items.forEach(item => {
         const videoId = item.snippet.resourceId.videoId;
         const videoTitle = item.snippet.title;
         const videoDesc = item.snippet.description;
@@ -53,6 +56,18 @@ class UserInterface{
         </div>
         `;
     });
+      
+    } else if(type === 'searchList') {
+      output = `<h4 class="center-align">Results for: ${ui.videoInput.value}</h4>`;
+      items.forEach(item => {
+        const videoId = item.id.videoId;
+        // TODO results output 
+        output += `
+          <iframe width="100%" height="auto" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        `
+      })
+    }
+    
     // output videos
     ui.videoContainer.innerHTML = output;
   }
