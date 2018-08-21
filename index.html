@@ -8,7 +8,7 @@
     <title>Youtube Channel Data</title>
     <link rel="shortcut icon" href="" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -19,35 +19,42 @@
             </div>
         </div>
     </nav>
-<section>
-    <div class="container">
-        <p>Log in with Google Account</p>
-        <button class="btn red" id="login-button">Log In</button>
-        <button class="btn red" id="logout-button">Log Out</button>
-        <div id="content">
-            <div class="row">
-                <div class="col s6">
-                    <form id="channel-form">
-                        <div class="input-field col s6">
-                            <input type="text" id="channel-input" placeholder="Enter channel name">
-                            <input type="submit" value="Get channel data" class="btn grey">
+    <section>
+        <div class="container">
+            <div class="app">
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <h5 class="center-align">Log in using Google Account</h5>
+                        <div class="center-align">
+                            <button class="btn inline-block teal accent-3" id="login-button">Log In</button>
+                            <button class="btn inline-block teal accent-3" id="logout-button">Log Out</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
-                <div id="channel-data" class="col s6"></div>
             </div>
-            <div class="row" id="video-container"></div>
+            
+            <div id="content">
+                <div class="row">
+                    <div class="col s12 m8 offset-m2">
+                        <form id="channel-form">
+                            <div class="input-field center-align">
+                                <input type="text" id="channel-input" placeholder="Enter channel name">
+                                <input type="submit" value="Get channel data" class="btn red darken-1">
+                            </div>
+                        </form>
+                    </div>
+                    <div id="channel-data" class="col s12 l10 offset-l1"></div>
+                </div>
+                <div class="row" id="video-container"></div>
+            </div>
         </div>
-    </div>
-</section>
-    
+    </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-    
+
     <script src="app.js"></script>
-    
-    <script async defer src="https://apis.google.com/js/api.js"
-    onload="this.onload=function(){};handleClientLoad()"
-    onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
 </body>
 
 </html>

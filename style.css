@@ -1,3 +1,6 @@
 #content, #login-button, #logout-button{
     display: none;
 }
+.inline-block{
+    display: inline-block;
+}
